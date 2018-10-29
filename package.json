@@ -1,0 +1,11 @@
+{
+  "name": "doi2ref",
+  "version": "1.0.0",
+  "description": "A node tool to generate .bib reference files from a Markdown file and replace DOI, in format [#DOI:---------] with a reference tag.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
