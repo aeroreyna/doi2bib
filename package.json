@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "scholdoc": "scholdoc example_paper.md -o example_paper.html --filter scholdoc-citeproc --csl=ieee.csl"
+    "scholdoc": "scholdoc examples/example_paper.md -o examples/example_paper.html --filter scholdoc-citeproc --csl=ieee.csl"
   },
   "author": "",
   "license": "ISC",
