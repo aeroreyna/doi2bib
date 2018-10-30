@@ -5,7 +5,10 @@ let doi2bib = {};
 let outFile = './library.bib';
 
 let libraryJSON = './library.json';
-let library = JSON.parse(fs.readFileSync(libraryJSON));
+let library = {};
+if(fs.existsSync(libraryJSON)){
+  library = JSON.parse(fs.readFileSync(libraryJSON));
+}
 //console.log(library)
 
 let getCitationFromDOI = function(doi){
@@ -61,7 +64,9 @@ doi2bib.updateBibFromFile = function(inFile){
   fs.readFile(inFile, 'utf8', function(err, contents) {
     if (err) console.error(err);
 
-    contents.match(/\[@DOI:\S+/g).forEach((doi)=>{
+    let m = contents.match(/\[@DOI:\S+/g);
+    if(!m) return 0;
+    m.forEach((doi)=>{
       //console.log(doi.substring(6, doi.length-1));
       let d = doi.substring(6, doi.indexOf(']'));
       //console.log(d, doi);
