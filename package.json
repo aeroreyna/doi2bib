@@ -1,6 +1,6 @@
 {
   "name": "doi2bib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A node.js tool to generate .bib reference files from a Markdown file with references tag in format [@DOI:---------].",
   "main": "index.js",
   "scripts": {
