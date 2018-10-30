@@ -7,6 +7,16 @@ yarn-error.log*
 
 config.cson
 
+#libraries files
+library.json
+*.bib
+
+#example compilation
+*.doc
+*.docx
+*.tex
+*.html
+
 # Runtime data
 pids
 *.pid

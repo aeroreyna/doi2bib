@@ -1,11 +1,15 @@
 {
-  "name": "doi2ref",
+  "name": "doi2bib",
   "version": "1.0.0",
-  "description": "A node tool to generate .bib reference files from a Markdown file and replace DOI, in format [#DOI:---------] with a reference tag.",
+  "description": "A node.js tool to generate .bib reference files from a Markdown file with references tag in format [@DOI:---------].",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js",
+    "scholdoc": "scholdoc example_paper.md -o example_paper.html --filter scholdoc-citeproc --csl=ieee.csl"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nets": "^3.2.0"
+  }
 }
