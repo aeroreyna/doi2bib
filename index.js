@@ -59,6 +59,8 @@ let addCitations = function(entries){
 }
 
 doi2bib.updateFromText = function(contents){
+  let promises = [];
+  
   let m = contents.match(/\[@DOI:\S+/g);
   if(!m) return 0;
   m.forEach((doi)=>{
@@ -85,8 +87,6 @@ doi2bib.updateFromText = function(contents){
 }
 
 doi2bib.updateBibFromFile = function(inFile){
-  let promises = [];
-
   fs.readFile(inFile, 'utf8', (err, contents)=> {
     if (err) console.error(err);
 
