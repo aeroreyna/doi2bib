@@ -58,35 +58,39 @@ let addCitations = function(entries){
   }
 }
 
+doi2bib.updateFromText = function(contents){
+  let m = contents.match(/\[@DOI:\S+/g);
+  if(!m) return 0;
+  m.forEach((doi)=>{
+    //console.log(doi.substring(6, doi.length-1));
+    let d = doi.substring(6, doi.indexOf(']'));
+    //console.log(d, doi);
+    if(!library[d]){
+      library[d] = "";
+      promises.push(
+        getCitationFromDOI(d).then((data)=>{
+          if(data){
+            library[d] = data;
+            return data;
+          } else {
+            return data;
+          }
+        })
+      );
+    }
+  });
+  return Promise.all(promises).then((data)=>{
+    return addCitations(data);
+  });
+}
+
 doi2bib.updateBibFromFile = function(inFile){
   let promises = [];
 
-  fs.readFile(inFile, 'utf8', function(err, contents) {
+  fs.readFile(inFile, 'utf8', (err, contents)=> {
     if (err) console.error(err);
 
-    let m = contents.match(/\[@DOI:\S+/g);
-    if(!m) return 0;
-    m.forEach((doi)=>{
-      //console.log(doi.substring(6, doi.length-1));
-      let d = doi.substring(6, doi.indexOf(']'));
-      //console.log(d, doi);
-      if(!library[d]){
-        library[d] = "";
-        promises.push(
-          getCitationFromDOI(d).then((data)=>{
-            if(data){
-              library[d] = data;
-              return data;
-            } else {
-              return data;
-            }
-          })
-        );
-      }
-    });
-    return Promise.all(promises).then((data)=>{
-      return addCitations(data);
-    });
+    this.updateFromText(contents);
   });
 }
 
