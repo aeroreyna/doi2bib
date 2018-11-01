@@ -60,8 +60,8 @@ let addCitations = function(entries){
 
 doi2bib.updateFromText = function(contents){
   let promises = [];
-  
-  let m = contents.match(/\[@DOI:\S+/g);
+
+  let m = contents.match(/@DOI:10.\d{4,9}\/[-._;()/:A-Z0-9]+/g); //old /\[@DOI:\S+/g
   if(!m) return 0;
   m.forEach((doi)=>{
     //console.log(doi.substring(6, doi.length-1));
