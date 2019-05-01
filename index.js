@@ -61,12 +61,13 @@ let addCitations = function(entries){
 doi2bib.updateFromText = function(contents){
   let promises = [];
 
-  let m = contents.match(/@DOI:10.\d{4,9}\/[-._;()/:A-Z0-9]+/g); //old /\[@DOI:\S+/g
+  let m = contents.match(/@DOI:\S*[\];]/g); //I found dificult to regexp DOI, this work for markdown scholar
   if(!m) return 0;
   m.forEach((doi)=>{
-    //console.log(doi.substring(6, doi.length-1));
-    let d = doi.substring(6, doi.indexOf(']'));
-    //console.log(d, doi);
+    //console.log(doi);
+    let tempIndex = doi.indexOf(']') != -1 ? doi.indexOf(']') : doi.indexOf(';');
+    let d = doi.substring(5, tempIndex);
+    //console.log(d, tempIndex);
     if(!library[d]){
       library[d] = "";
       promises.push(
