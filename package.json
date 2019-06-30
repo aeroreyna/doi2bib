@@ -4,9 +4,14 @@
   "description": "A node.js tool to generate .bib reference files from a Markdown file with references tag in format @DOI:---------",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "node test.js"
   },
-  "author": "",
+  "author": "AeroReyna",
+  "homepage": "https://github.com/aeroreyna/doi2bib",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/aeroreyna/doi2bib"
+  },
   "license": "ISC",
   "dependencies": {
     "nets": "^3.2.0"
