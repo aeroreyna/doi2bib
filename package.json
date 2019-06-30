@@ -1,6 +1,6 @@
 {
   "name": "doi2bib",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A node.js tool to generate .bib reference files from a Markdown file with references tag in format @DOI:---------",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "AeroReyna",
   "homepage": "https://github.com/aeroreyna/doi2bib",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/aeroreyna/doi2bib"
+    "type": "git",
+    "url": "https://github.com/aeroreyna/doi2bib"
   },
   "license": "ISC",
   "dependencies": {
