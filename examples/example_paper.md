@@ -2,13 +2,10 @@
 title: Academic markdown example
 tags: [example, citation]
 bibliography: ../library.bib
+csl: ieee.csl
 author:
-  - Reyna-Orta. Adolfo^1^ (<adolfo.reyna@aubc.edu.mx>)
-  - Edward R. Abraham^1^
-  - ^1^Dragonfly Science, PO Box 27535, Wellington 6141, New Zealand (<http://www.dragonfly.co.nz>)
+  - Reyna-Orta. Adolfo (<adolfo.reyna@aubc.edu.mx>)
 ---
-
-_This paper appears in the PLOS ONE journal [(link)]( http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0064438)_
 
 ## Abstract:
 
