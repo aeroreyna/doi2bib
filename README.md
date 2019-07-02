@@ -34,8 +34,6 @@ This package is used as part of the [pandoc-doi2bib](https://github.com/aeroreyn
 These instructions will get you the doi2bib package to use on your node projects.
 
 ### Installing
-A step by step series of examples that tell you how to get a development env running.
-
 For using as Node.js package use:
 
 ~~~sh
