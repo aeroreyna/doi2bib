@@ -1,7 +1,3 @@
----
-bibliography: library.bib
----
-
 <h3 align="center">DOI2BIB</h3>
 
 <div align="center">
@@ -17,7 +13,7 @@ bibliography: library.bib
 
 ---
 
-<p align="center"> A node.js package that add reference information of any given DOI to a BibText (.bib) file.
+<p align="center"> A node.js package to retrieve citation information of any given DOI and update it to a specified BibText (.bib) file.
     <br>
 </p>
 
@@ -29,11 +25,13 @@ bibliography: library.bib
 - [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
-This package parse Markdown files or text strings searching for DOI references with the format: @DOI:---.---/-----------.
+This package parse Markdown files or text strings searching for DOI references with the format: \@DOI:---.---/-----------.
 It keeps a *.bib file (library.bib per default) updated by adding the necessary references and information obtained from [http://dx.doi.org/]().
 
+This package is used as part of the [pandoc-doi2bib](https://github.com/aeroreyna/pandoc-doi2bib) filter and [pdf2doi](https://github.com/aeroreyna/pdf2doi) utilities.
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you the doi2bib package to use on your node projects.
 
 ### Installing
 A step by step series of examples that tell you how to get a development env running.
@@ -58,7 +56,7 @@ This package exposes the following functions:
   - `updateFromText(text)`: Looks for DOI references and updates the .bib file.
   - `updateFromFile(file)`: Read the file and uses the function updateFromText.
   - `watchFile(file)`: Read the file and keeps and eye on it looking for new references.
-  - `getCitation(DOI)`: Checks if the specified DOI reference is the library, otherwise is added.
+  - `getCitation(DOI)`: Obtain and return the citation of the DOI document and added to the library if necessary.
   - `setLibraryFile(file)`: Change the bibliography .bib file to work on.
 
 An example could be:
@@ -66,7 +64,9 @@ An example could be:
 ~~~js
 const doi2bib = require("./index.js");
 
-doi2bib.watchFile('./examples/example_paper.md');
+doi2bib.getCitation('10.1007/s10462-018-09676-2').then((r)=>{
+  console.log(r)
+});
 ~~~
 
 Which keeps an eye on the specified file in case of new DOI references are given.
@@ -110,7 +110,7 @@ watcher.on('add', function(path, stats) {
 - [NodeJs](https://nodejs.org/en/)
 
 ## ✍️ Authors <a name = "authors"></a>
-- [@aeroreyna](https://github.com/aeroreyna) - Idea & Initial work
+- [\@aeroreyna](https://github.com/aeroreyna) - Idea & Initial work
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 

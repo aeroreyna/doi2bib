@@ -95,17 +95,13 @@ let doi2bib = {
   },
   getCitation(doi){
     return new Promise((resolve, reject)=>{
-      if(library[doi]){
-        resolve(library[doi]);
-      } else {
         return getCitationFromDOI(doi).then( (entry)=>{
-          if(entry){
+          if(entry && !library[doi]){
             library[doi] = entry;
             addCitations([entry], this.outFile, this.verbose);
           }
           resolve(entry);
         });
-      }
     });
   },
   setLibraryFile(file){
