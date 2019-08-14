@@ -116,4 +116,4 @@ See also the list of [contributors](https://github.com/kylelobo/The-Documentatio
 
 - [ ] remove nets dependency
 - [ ] make sure all functions return a Promise
-- [ ] catch errors in promises
+- [x] catch errors in promises

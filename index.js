@@ -34,8 +34,8 @@ let getCitationFromDOI = function(doi){
         let data = body.replace(/([A-Z])\w+/, "DOI:" + doi);
         resolve(data);
       }else{
-        console.error(doi + " not found");
-        resolve(null);
+        if(response.statusCode == 404) reject("Error: DOI not found");
+        reject("Error: " + response.statusCode);
         //throw error;
       }
     });
@@ -43,20 +43,24 @@ let getCitationFromDOI = function(doi){
 };
 
 let addCitations = function(entries, file, verbose){
-  let addString = "";
-  let count = 0;
-  entries.forEach((entry)=>{
-    if(entry){
-      addString += entry + "\n\n";
-      count++;
-    }
-  });
-  if(count){
-    fs.appendFile(file, addString, (err) => {
-      if (err) throw err;
-      if(verbose) console.log('Library updated:', entries);
+  return new Promise((resolve, reject)=>{
+    let addString = "";
+    let count = 0;
+    entries.forEach((entry)=>{
+      if(entry){
+        addString += entry + "\n\n";
+        count++;
+      }
     });
-  }
+    if(count){
+      fs.appendFile(file, addString, (err) => {
+        if (err) reject(err)
+        if(verbose) console.log('Library updated:', entries);
+        resolve('Library updated');
+      });
+    }
+    resolve('Library updated');
+  });
 }
 
 let doi2bib = {
@@ -80,10 +84,12 @@ let doi2bib = {
       return addCitations(data, this.outFile, this.verbose);
     });
   },
-  updateFromFile(inFile){
-    fs.readFile(inFile, 'utf8', (err, content)=> {
-      if (err) console.error(err);
-      this.updateFromText(content);
+  updateFromFile(file){
+    return new Promise((resolve, reject)=>{
+      fs.readFile(file, 'utf8', (err, content)=> {
+        if (err) reject(err);
+        this.updateFromText(content).then(resolve).catch(reject);
+      });
     });
   },
   watchFile(inFile){
@@ -101,7 +107,7 @@ let doi2bib = {
             addCitations([entry], this.outFile, this.verbose);
           }
           resolve(entry);
-        });
+        }).catch(reject);
     });
   },
   setLibraryFile(file){

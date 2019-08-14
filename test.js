@@ -9,4 +9,4 @@ doi2bib.getCitation('10.1007/s10462-018-09676-2').then((r)=>{
   if(r){
     console.log(r)
   }
-});
+}).catch(console.error);
