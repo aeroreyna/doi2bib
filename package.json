@@ -1,7 +1,7 @@
 {
   "name": "doi2bib",
   "version": "1.0.7",
-  "description": "A node.js tool to generate .bib reference files from a Markdown file with references tag in format @DOI:---------",
+  "description": "A node.js package to retrieve citation information of any given DOI, document or string text, and update it to a specified BibText (.bib) file.",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"

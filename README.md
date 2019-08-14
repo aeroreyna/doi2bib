@@ -13,7 +13,7 @@
 
 ---
 
-<p align="center"> A node.js package to retrieve citation information of any given DOI and update it to a specified BibText (.bib) file.
+<p align="center"> A node.js package to retrieve citation information of any given DOI, document or string text, and update it to a specified BibText (.bib) file.
     <br>
 </p>
 
