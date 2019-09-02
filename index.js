@@ -92,6 +92,27 @@ let doi2bib = {
       });
     });
   },
+  updateFromArray(arr){
+    return new Promise((resolve, reject)=>{
+      let promises = [];
+      if(arr && arr.length){
+        arr.forEach((d)=>{
+          if(!library[d]){
+            promises.push(getCitationFromDOI(d).then((data)=>{
+              if(data) library[d] = data;
+              return data;
+            }));
+          }
+        });
+      } else {
+        reject("no array input was given")
+      }
+      if(!promises.length) resolve("No updates required")
+      return Promise.all(promises).then((data)=>{
+        return addCitations(data, this.outFile, this.verbose);
+      });
+    });
+  },
   watchFile(inFile){
     this.updateFromFile(inFile);
     fs.watchFile(inFile, (curr, prev) => {
