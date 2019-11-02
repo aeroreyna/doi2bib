@@ -31,7 +31,8 @@ let getCitationFromDOI = function(doi){
     };
     nets(options, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        let data = body.replace(/([A-Z])\w+/, "DOI:" + doi);
+        //let data = body.replace(/([A-Z])\w+/, "DOI:" + doi);
+        let data = body.replace(/(?<=@.*{).+(?=,)/, "DOI:" + doi);
         resolve(data);
       }else{
         if(response.statusCode == 404) reject("Error: DOI not found");
@@ -101,6 +102,8 @@ let doi2bib = {
             promises.push(getCitationFromDOI(d).then((data)=>{
               if(data) library[d] = data;
               return data;
+            }).catch(()=>{
+              return undefined
             }));
           }
         });
