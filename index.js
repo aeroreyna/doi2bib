@@ -35,7 +35,7 @@ let getCitationFromDOI = function(doi){
         let data = body.replace(/(?<=@.*{).+(?=,)/, "DOI:" + doi);
         resolve(data);
       }else{
-        if(response.statusCode == 404) reject("Error: DOI not found");
+        if(response.statusCode == 404) reject("Error: DOI not found, " + doi);
         reject("Error: " + response.statusCode);
         //throw error;
       }
@@ -135,8 +135,10 @@ let doi2bib = {
     });
   },
   setLibraryFile(file){
-    this.outFile = file;
-    library = readLibrary(file);
+    if(file !== this.outFile){
+      this.outFile = file;
+      library = readLibrary(file);
+    }
   }
 };
 
