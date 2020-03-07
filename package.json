@@ -1,6 +1,6 @@
 {
   "name": "doi2bib",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A node.js package to retrieve citation information of any given DOI, document or string text, and update it to a specified BibText (.bib) file.",
   "main": "index.js",
   "scripts": {
